@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 interface Trigger {
   value: string;
@@ -13,7 +14,7 @@ interface Trigger {
 })
 export class FormComponent implements OnInit {
 
-  selectedValue: string;
+  registerForm: FormGroup;
 
   trigger: Trigger[] = [
     {value: 'trigger-0', viewValue: 'Planned Personal Data transfer to other processing entity'},
@@ -24,9 +25,31 @@ export class FormComponent implements OnInit {
     {value: 'trigger-5', viewValue: 'Purpose/Service start/commencement date -legal/contract start'}
   ];
 
-  constructor(private route: Router) { }
+  constructor(
+    private route: Router,
+    private fb: FormBuilder
+    ) { }
 
   ngOnInit(): void {
+    this.registerForm = this.fb.group({
+      schemeName: ['', [Validators.required]],
+      triggerName: ['', Validators.required],
+      triggerDateKnown: [''],
+      isInterimTrigger: [''],
+      interimTriggerName: [''],
+      constraintName: ['', [Validators.required]],
+      constraintValueKnown: [''],
+      effectiveDeadlineInfo: ['', [Validators.required]],
+      relatedProcessingBasisReferenceType: [''],
+      purma: [''],
+      nntm: [''],
+      pdb: [''],
+      dsart: [''],
+      description: ['']
+    });
+  }
+
+  onSubmit() {
   }
 
   backToList() {
