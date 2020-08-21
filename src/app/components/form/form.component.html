@@ -1,0 +1,110 @@
+<mat-card>
+  <h2>Trigger and Constraint Schemes- New</h2>
+  <form>
+
+    <mat-form-field class="example-full-width d-block" appearance="outline">
+      <mat-label>Name *</mat-label>
+      <input matInput>
+    </mat-form-field>
+
+    <mat-form-field class="d-block w-100">
+      <mat-label>Trigger Name *</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let triggers of trigger" [value]="triggers.value">
+          {{triggers.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-card>
+      <p>Trigger Date Known</p>
+      <mat-radio-group aria-label="Select an option">
+        <mat-radio-button value="1">Lawful</mat-radio-button>
+        <mat-radio-button value="2">Service Category</mat-radio-button>
+        <mat-radio-button value="2">Item</mat-radio-button>
+      </mat-radio-group>
+    </mat-card>
+
+    <mat-card>
+      <section class="example-section">
+        <mat-checkbox class="example-margin">Is Interim Trigger?</mat-checkbox>
+      </section>
+      <mat-form-field class="d-block w-100">
+        <mat-label>Interim Trigger Name</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let triggers of trigger" [value]="triggers.value">
+            {{triggers.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-card>
+
+    <mat-form-field class="d-block w-100">
+      <mat-label>Constraint Name *</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let triggers of trigger" [value]="triggers.value">
+          {{triggers.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-card>
+      <p>Constraint Value Known</p>
+      <mat-radio-group aria-label="Select an option">
+        <mat-radio-button value="1">Lawful</mat-radio-button>
+        <mat-radio-button value="2">Service Category</mat-radio-button>
+        <mat-radio-button value="2">Item</mat-radio-button>
+      </mat-radio-group>
+    </mat-card>
+
+    <mat-form-field class="d-block w-100">
+      <mat-label>Effective Deadline Info *</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let triggers of trigger" [value]="triggers.value">
+          {{triggers.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="d-block w-100">
+      <mat-label>Related Processing Basis Referance Type</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let triggers of trigger" [value]="triggers.value">
+          {{triggers.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-card>
+      <section class="example-section d-inline">
+        <mat-checkbox class="example-margin">PURMA</mat-checkbox>
+      </section>
+      <section class="example-section d-inline">
+        <mat-checkbox class="example-margin">NNTM</mat-checkbox>
+      </section>
+      <section class="example-section d-inline">
+        <mat-checkbox class="example-margin">PDB</mat-checkbox>
+      </section>
+      <section class="example-section d-inline">
+        <mat-checkbox class="example-margin">DSART</mat-checkbox>
+      </section>
+    </mat-card>
+
+    <mat-form-field class="example-full-width w-100" appearance="outline">
+      <mat-label>Description</mat-label>
+      <textarea matInput placeholder="Description"></textarea>
+    </mat-form-field>
+
+    <div>
+      <button mat-raised-button (click)="backToList()">
+        <mat-icon aria-hidden="false" aria-label="Example home icon">clear</mat-icon>
+        Close
+      </button>
+      <button mat-raised-button>
+        <mat-icon aria-hidden="false" aria-label="Example home icon">save</mat-icon>
+        Save
+      </button>
+    </div>
+
+  </form>
+</mat-card>

@@ -1,0 +1,58 @@
+<button mat-raised-button color="primary" [routerLink]="['/form']">
+  <mat-icon aria-hidden="false" aria-label="Example home icon">add</mat-icon>
+  New
+</button>
+<mat-card>
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+    </ng-container>
+
+    <!-- Description Column -->
+    <ng-container matColumnDef="description">
+      <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.description}} </mat-cell>
+    </ng-container>
+
+    <!-- Trigger Name Column -->
+    <ng-container matColumnDef="trigger_name">
+      <mat-header-cell *matHeaderCellDef> Trigger Name </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.status}} </mat-cell>
+    </ng-container>
+
+    <!-- Interim Trigger Name Column -->
+    <ng-container matColumnDef="interim_trigger_name">
+      <mat-header-cell *matHeaderCellDef> Interim Trigger Name </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.modifyBy}} </mat-cell>
+    </ng-container>
+
+    <!-- Effective Deadline Info Column -->
+    <ng-container matColumnDef="effective_deadline_info">
+      <mat-header-cell *matHeaderCellDef> Effective Deadline Info </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.modifyDate}} </mat-cell>
+    </ng-container>
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <div class="d-flex flex-column w-100">
+          <div>
+            <mat-icon aria-hidden="false" aria-label="Example home icon">visibility</mat-icon>
+            <mat-icon aria-hidden="false" aria-label="Example home icon">create</mat-icon>
+          </div>
+          <div>
+            <mat-icon aria-hidden="false" aria-label="Example home icon">archive</mat-icon>
+            <mat-icon aria-hidden="false" aria-label="Example home icon">delete</mat-icon>
+          </div>
+        </div>
+      </mat-cell>
+    </ng-container>
+
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</mat-card>
