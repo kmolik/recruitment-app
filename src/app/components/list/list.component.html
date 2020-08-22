@@ -37,7 +37,7 @@
     <!-- Actions Column -->
     <ng-container matColumnDef="actions">
       <mat-header-cell *matHeaderCellDef></mat-header-cell>
-      <mat-cell *matCellDef="let element">
+      <mat-cell *matCellDef="let i = index">
         <div class="d-flex flex-column w-100">
           <div>
             <mat-icon aria-hidden="false" aria-label="Example home icon">visibility</mat-icon>
@@ -45,7 +45,7 @@
           </div>
           <div>
             <mat-icon aria-hidden="false" aria-label="Example home icon">archive</mat-icon>
-            <mat-icon aria-hidden="false" aria-label="Example home icon">delete</mat-icon>
+            <mat-icon aria-hidden="false" aria-label="Example home icon" (click)="deleteRow(i)">delete</mat-icon>
           </div>
         </div>
       </mat-cell>

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { ListDataService } from './services/list-data.service';
-import {take} from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -16,9 +15,5 @@ export class AppComponent {
     this.data.getData().subscribe(tableData => {
       console.log(tableData);
     });
-  }
-
-  test2() {
-     this.data.testFunction();
   }
 }

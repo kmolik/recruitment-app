@@ -29,4 +29,8 @@ export class ListComponent implements OnInit, OnDestroy {
     this.dataSourceSubscription$.unsubscribe();
   }
 
+  deleteRow(element) {
+    this.listDataService.removeElement(element);
+  }
+
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {ListDataService} from '../../services/list-data.service';
 
 interface Trigger {
   value: string;
@@ -27,30 +28,37 @@ export class FormComponent implements OnInit {
 
   constructor(
     private route: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private listDataService: ListDataService
     ) { }
 
   ngOnInit(): void {
     this.registerForm = this.fb.group({
-      schemeName: ['', [Validators.required]],
-      triggerName: ['', Validators.required],
+      name: ['', [Validators.required]],
+      status: ['', Validators.required],
       triggerDateKnown: [''],
-      isInterimTrigger: [''],
+      isInterimTrigger: [false],
       interimTriggerName: [''],
-      constraintName: ['', [Validators.required]],
+      modifyBy: ['', [Validators.required]],
       constraintValueKnown: [''],
-      effectiveDeadlineInfo: ['', [Validators.required]],
+      modifyDate: ['', [Validators.required]],
       relatedProcessingBasisReferenceType: [''],
-      purma: [''],
-      nntm: [''],
-      pdb: [''],
-      dsart: [''],
+      purma: [false],
+      nntm: [false],
+      pdb: [false],
+      dsart: [false],
       description: ['']
     });
   }
 
   onSubmit() {
+
+    if (this.registerForm.invalid){
+      return;
+    }
     console.log(this.registerForm.value);
+    this.listDataService.addElement(this.registerForm.value);
+    this.route.navigate(['list']);
   }
 
   backToList() {

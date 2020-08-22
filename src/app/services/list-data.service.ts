@@ -30,32 +30,18 @@ export class ListDataService {
     });
   }
 
-  public testFunction() {
-    const test = {
-      id: 1,
-      name: 'Contract fix timeframe  - Lawful Basis Start and End date known with Interim Trigger.',
-      status: 'ACTIVE',
-      modifyBy: 'klg',
-      modifyDate: '2019-01-30 12:27:22.000490',
-      description: null,
-      triggerdateLbman: false,
-      triggerdateSvcscat: null,
-      triggerdateItem: true,
-      isinterimtrigger: false,
-      constraintLbman: true,
-      constraintSvcscat: null,
-      constraintItem: false,
-      purma: true,
-      nntm: true,
-      pdbtm: false,
-      dsart: false,
-      trigger: 8,
-      interimtrigger: 33,
-      constraint: 1,
-      lbmanEffectivedeadlineinfo: 3,
-      lbmanProcbasisref: 1,
-      editable: true
-    };
+  private removeAt(tableElement: any): void {
+    this.tableData$.pipe(take(1)).subscribe((list: ListObject[]) => {
+      list.splice(tableElement, 1);
+      this.tableData.next(list);
+    });
+  }
+
+  public addElement(test) {
     this.addElementToDataTable(test);
+  }
+
+  public removeElement(element) {
+    this.removeAt(element);
   }
 }
