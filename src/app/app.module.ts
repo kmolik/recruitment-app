@@ -10,6 +10,7 @@ import { ListComponent } from './components/list/list.component';
 import { FormComponent } from './components/form/form.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
+
 @NgModule({
   declarations: [
     AppComponent,

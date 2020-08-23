@@ -1,36 +1,36 @@
-<button mat-raised-button color="primary" [routerLink]="['/form']">
+<button mat-raised-button class="ml-3 mt-3 mb-0" color="primary" [routerLink]="['/form']">
   <mat-icon aria-hidden="false" aria-label="Example home icon">add</mat-icon>
   New
 </button>
-<mat-card>
-  <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<mat-card class="mt-0">
+  <mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
     <!-- Name Column -->
     <ng-container matColumnDef="name">
-      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
     </ng-container>
 
     <!-- Description Column -->
     <ng-container matColumnDef="description">
-      <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Description </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.description}} </mat-cell>
     </ng-container>
 
     <!-- Trigger Name Column -->
-    <ng-container matColumnDef="trigger_name">
-      <mat-header-cell *matHeaderCellDef> Trigger Name </mat-header-cell>
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Trigger Name </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.status}} </mat-cell>
     </ng-container>
 
     <!-- Interim Trigger Name Column -->
-    <ng-container matColumnDef="interim_trigger_name">
-      <mat-header-cell *matHeaderCellDef> Interim Trigger Name </mat-header-cell>
+    <ng-container matColumnDef="modifyBy">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Interim Trigger Name </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.modifyBy}} </mat-cell>
     </ng-container>
 
     <!-- Effective Deadline Info Column -->
-    <ng-container matColumnDef="effective_deadline_info">
-      <mat-header-cell *matHeaderCellDef> Effective Deadline Info </mat-header-cell>
+    <ng-container matColumnDef="modifyDate">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Effective Deadline Info </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.modifyDate}} </mat-cell>
     </ng-container>
 
@@ -40,12 +40,12 @@
       <mat-cell *matCellDef="let i = index">
         <div class="d-flex flex-column w-100">
           <div>
-            <mat-icon aria-hidden="false" aria-label="Example home icon">visibility</mat-icon>
-            <mat-icon aria-hidden="false" aria-label="Example home icon">create</mat-icon>
+            <mat-icon aria-hidden="false" aria-label="Example home icon" type="button" class="m-1" >visibility</mat-icon>
+            <mat-icon aria-hidden="false" aria-label="Example home icon" type="button" class="m-1">create</mat-icon>
           </div>
           <div>
-            <mat-icon aria-hidden="false" aria-label="Example home icon">archive</mat-icon>
-            <mat-icon aria-hidden="false" aria-label="Example home icon" (click)="deleteRow(i)">delete</mat-icon>
+            <mat-icon aria-hidden="false" aria-label="Example home icon" type="button" class="m-1">archive</mat-icon>
+            <mat-icon aria-hidden="false" aria-label="Example home icon" type="button" (click)="deleteRow(i)" class="m-1">delete</mat-icon>
           </div>
         </div>
       </mat-cell>
