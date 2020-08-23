@@ -37,8 +37,8 @@ export class ListDataService {
     });
   }
 
-  public addElement(test) {
-    this.addElementToDataTable(test);
+  public addElement(element) {
+    this.addElementToDataTable(element);
   }
 
   public removeElement(element) {
