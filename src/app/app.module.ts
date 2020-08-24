@@ -9,13 +9,19 @@ import {MaterialModule} from './material/material.module';
 import { ListComponent } from './components/list/list.component';
 import { FormComponent } from './components/form/form.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { ConfirmDeleteModalComponent } from './modals/confirm-delete-modal/confirm-delete-modal.component';
+import { AddInformModalComponent } from './modals/add-inform-modal/add-inform-modal.component';
+import { PreviewModalComponent } from './modals/preview-modal/preview-modal.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ListComponent,
-    FormComponent
+    FormComponent,
+    ConfirmDeleteModalComponent,
+    AddInformModalComponent,
+    PreviewModalComponent
   ],
   imports: [
     BrowserModule,
@@ -24,6 +30,11 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule
+  ],
+  entryComponents: [
+    ConfirmDeleteModalComponent,
+    AddInformModalComponent,
+    PreviewModalComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

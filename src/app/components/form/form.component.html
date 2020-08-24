@@ -30,7 +30,7 @@
 
     <mat-card class="m-2">
       <section class="example-section">
-        <mat-checkbox color="primary" class="example-margin" formControlName="isInterimTrigger">Is Interim Trigger?</mat-checkbox>
+        <mat-checkbox color="primary" class="example-margin" formControlName="isInterimTrigger" (click)="changeCheckbox()" >Is Interim Trigger?</mat-checkbox>
       </section>
       <mat-form-field class="d-block w-100">
         <mat-label>Interim Trigger Name</mat-label>

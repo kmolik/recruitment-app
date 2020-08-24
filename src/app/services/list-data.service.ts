@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {ListObject} from '../interface/list-object';
 import {take} from 'rxjs/operators';
+import {element} from 'protractor';
 
 
 @Injectable({
@@ -32,16 +33,17 @@ export class ListDataService {
 
   private removeAt(tableElement: any): void {
     this.tableData$.pipe(take(1)).subscribe((list: ListObject[]) => {
-      list.splice(tableElement, 1);
+      const elementIndex = list.indexOf(tableElement);
+      list.splice(elementIndex, 1);
       this.tableData.next(list);
     });
   }
 
-  public addElement(element) {
-    this.addElementToDataTable(element);
+  public addElement(listObject: ListObject) {
+    this.addElementToDataTable(listObject);
   }
 
-  public removeElement(element) {
-    this.removeAt(element);
+  public removeElement(listObject: ListObject) {
+    this.removeAt(listObject);
   }
 }

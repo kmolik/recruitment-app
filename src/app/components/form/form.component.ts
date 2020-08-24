@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ListDataService} from '../../services/list-data.service';
+import {AddInformModalComponent} from '../../modals/add-inform-modal/add-inform-modal.component';
+import {MatDialog} from '@angular/material/dialog';
+
+
 
 interface Trigger {
   value: string;
@@ -14,6 +18,8 @@ interface Trigger {
   styleUrls: ['./form.component.scss']
 })
 export class FormComponent implements OnInit {
+
+  isInterimTriggerCheckbox = true;
 
   registerForm: FormGroup;
 
@@ -29,7 +35,8 @@ export class FormComponent implements OnInit {
   constructor(
     private route: Router,
     private fb: FormBuilder,
-    private listDataService: ListDataService
+    private listDataService: ListDataService,
+    private dialog: MatDialog
     ) { }
 
   ngOnInit(): void {
@@ -38,7 +45,7 @@ export class FormComponent implements OnInit {
       status: ['', Validators.required],
       triggerDateKnown: [''],
       isInterimTrigger: [false],
-      interimTriggerName: [''],
+      interimTriggerName: [{value: '', disabled: true}],
       modifyBy: ['', [Validators.required]],
       constraintValueKnown: [''],
       modifyDate: ['', [Validators.required]],
@@ -52,17 +59,35 @@ export class FormComponent implements OnInit {
   }
 
   onSubmit() {
-
+    console.log(this.registerForm.value);
     if (this.registerForm.invalid){
       return;
     }
-    console.log(this.registerForm.value);
     this.listDataService.addElement(this.registerForm.value);
-    this.route.navigate(['list']);
+    this.openModal(name);
   }
 
   backToList() {
     this.route.navigate(['list']);
   }
 
+  changeCheckbox(){
+    this.isInterimTriggerCheckbox = !this.isInterimTriggerCheckbox;
+    this.registerForm.controls.interimTriggerName.reset();
+    if (this.isInterimTriggerCheckbox) {
+      this.registerForm.controls.interimTriggerName.disable();
+    } else {
+      this.registerForm.controls.interimTriggerName.enable();
+    }
+  }
+  private openModal(name: string) {
+    const dialogRef = this.dialog.open(AddInformModalComponent, {
+      width: '300px',
+      data: name
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.backToList();
+    });
+  }
 }

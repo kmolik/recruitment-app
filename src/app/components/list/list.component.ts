@@ -5,6 +5,8 @@ import {ListDataService} from '../../services/list-data.service';
 import {Subscription} from 'rxjs';
 import {MatDialog} from '@angular/material/dialog';
 import {MatSort} from '@angular/material/sort';
+import {ConfirmDeleteModalComponent} from '../../modals/confirm-delete-modal/confirm-delete-modal.component';
+import {PreviewModalComponent} from '../../modals/preview-modal/preview-modal.component';
 
 
 @Component({
@@ -21,6 +23,7 @@ export class ListComponent implements OnInit, AfterViewInit, OnDestroy {
 
   constructor(
     private listDataService: ListDataService,
+    private dialog: MatDialog
   ) { }
 
   @ViewChild(MatSort) sort: MatSort;
@@ -40,7 +43,30 @@ export class ListComponent implements OnInit, AfterViewInit, OnDestroy {
     this.dataSourceSubscription$.unsubscribe();
   }
 
-  deleteRow(element) {
-    this.listDataService.removeElement(element);
+  private deleteRow(listElement: ListObject) {
+    this.listDataService.removeElement(listElement);
+  }
+
+  openModal(element: ListObject) {
+    const dialogRef = this.dialog.open(ConfirmDeleteModalComponent, {
+      width: '300px',
+      data: element
+    });
+
+    dialogRef.afterClosed().subscribe((res: {canDelete: boolean, deletedElement: any}) => {
+      if (res.canDelete) {
+        this.deleteRow(res.deletedElement);
+      }
+    });
+  }
+
+  openPreview(element: ListObject) {
+    const dialogRef = this.dialog.open(PreviewModalComponent, {
+      data: element
+    });
+  }
+
+  printElement(element: ListObject){
+    console.log(element);
   }
 }
